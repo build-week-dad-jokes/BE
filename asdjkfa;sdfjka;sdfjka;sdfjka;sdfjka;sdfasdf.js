@@ -18,6 +18,12 @@ exports.up = function(knex) {
                 .boolean("private")
                 .notNullable()
                 .defaultTo(false);
+            tbl
+                .boolean("upvote")
+                .defaultTo(false);
+            tbl
+                .boolean("downvote")
+                .defaultTo(false);
             })
 };
 

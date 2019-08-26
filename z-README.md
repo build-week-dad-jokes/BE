@@ -57,6 +57,8 @@ Tables
         punchline
         public t/f
         private t/f
+        upvote t/f
+        downvote t/f
 
 
 
