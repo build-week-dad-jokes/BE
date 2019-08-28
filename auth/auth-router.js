@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken");
 
 
 const secrets = require("../config/secrets.js");
-const Users = require("../queries/jokes-queries.js");
+//const Users = require("../queries/jokes-queries.js");
+
+const Users = require("../queries/users-queries.js");
 
 
 // REGISTER
@@ -16,6 +18,7 @@ router.post("/register", (req, res) => {
 
     Users.addUser(user)
       .then(newUser => {
+        // console.log(newUser)
         res.status(201).json(newUser);
       })
       .catch(err => {
@@ -27,6 +30,10 @@ router.post("/register", (req, res) => {
     res.status(400).json({ message: "Please enter a username and password." });
   }
 });
+
+
+
+
 
 
 // LOGIN
@@ -47,6 +54,40 @@ router.post("/register", (req, res) => {
       res.status(500).json({ message: "Please enter a username and password." });
     }
 });
+
+
+
+
+
+
+
+
+// GET ALL JOKES
+router.get('/', async (req, res) => {
+
+Users.find()
+  
+
+  try {
+      // we are passing req.query to the .find() method of hubs-model
+      const jokes = await Jokes.find(req.query);
+      res.status(200).json(jokes);
+  } catch (error) {
+      // log error to database
+      console.log(error);
+      res.status(500).json({
+      message: 'Error retrieving the jokes',
+      });
+  }
+});
+
+
+
+
+
+
+
+
 
 
 // CREATE TOKEN FUNCTION

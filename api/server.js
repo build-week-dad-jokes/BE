@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -13,7 +15,8 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-server.use('/api/jokes', authenticate, jokesRouter);
+server.use('/api/jokes', jokesRouter);
+//server.use('/api/jokes', authenticate, jokesRouter);
 
 server.use('/', (req, res) => {
     res.send("This is the Homepage")
