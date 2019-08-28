@@ -50,24 +50,43 @@ router.post("/addjoke", (req, res) => {
 
 // UPDATE JOKE
   
-  router.put('/:id', async (req, res) => {
-    const { id } = req.params;
-    const changes = req.body;
+router.put('/:id', async (req, res) => {
+  try {
+    const joke = await Jokes.update(req.params.id, req.body);
+  if (joke) {
+    res.status(200).json(joke);
+  } else {
+    res.status(404).json({ message: 'The joke could not be found' });
+  }
+  } catch (error) {
+    // log error to database
+    console.log(error);
+    res.status(500).json({
+   message: 'Error updating the joke, man',
+    });
+  }
+});
+
+  ////////////////////////////////////////////
+
+//  router.put('/:id', async (req, res) => {
+  //   const { id } = req.params;
+  //   const changes = req.body;
   
-    try {
-      const count = await db('jokes')
-        .where({ id })
-        .update(changes);
+  //   try {
+  //     const count = await db('jokes')
+  //       .where({ id })
+  //       .update(changes);
   
-      if (count) {
-        res.json({ update: count });
-      } else {
-        res.status(404).json({ message: 'Could not find joke with given id' });
-      }
-    } catch (err) {
-      res.status(500).json({ message: 'Failed to update joke' });
-    }
-  });
+  //     if (count) {
+  //       res.json({ update: count });
+  //     } else {
+  //       res.status(404).json({ message: 'Could not find joke with given id' });
+  //     }
+  //   } catch (err) {
+  //     res.status(500).json({ message: 'Failed to update joke' });
+  //   }
+  // });
 
 
 

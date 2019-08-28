@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets.js");
 //const Users = require("../queries/jokes-queries.js");
 
-const Users = require("../queries/users-queries.js");
+const Users = require("../queries/auth-queries.js");
 
 
 // REGISTER

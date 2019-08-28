@@ -7,7 +7,8 @@ module.exports = {
   addUser,
   addJoke,
   findUser,
-  findBy
+  findBy,
+  update
 };
 
 function findJokes(){
@@ -67,3 +68,10 @@ function findJoke(id) {
 function findBy(filter) {
   return db("users").where(filter);
 }
+
+
+function update(id, changes) {
+  return db('jokes')
+  .where({ id })
+  .update(changes, '*');
+  }
