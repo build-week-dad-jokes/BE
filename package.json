@@ -1,7 +1,7 @@
 {
-  "name": "BUILD WEEK 3 BACKEND",
+  "name": "BUILD_WEEK_3_BACKEND",
   "version": "1.0.0",
-  "description": "BUILD WEEK 3 BACKEND",
+  "description": "BUILD_WEEK_3_BACKEND",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
