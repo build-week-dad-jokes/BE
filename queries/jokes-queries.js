@@ -10,7 +10,8 @@ module.exports = {
   findBy,
   update,
   remove,
-  findById
+  findJokeById,
+  findUserById
 };
 
 function findJokes(){
@@ -40,7 +41,7 @@ async function addUser(user) {
 function findUser(id) {
   return db("users")
     .where({ id })
-    .select("id", "username", "password")
+    .select("id", "username")
     .orderBy("id")
     .first();
 }
@@ -84,8 +85,16 @@ function update(id, changes) {
     .del();
     }
 
-    function findById(id) {
+    function findJokeById(id) {
       return db('jokes')
+      .where({ id })
+      .first();
+      }
+
+    function findUserById(id) {
+      return db('jokesdb')
+      .select('id', 'username')
+      .table('users')
       .where({ id })
       .first();
       }

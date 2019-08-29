@@ -1,7 +1,5 @@
 const express = require('express');
 
-// const authenticate = require('../auth/authenticate-middleware.js');
-
 const Jokes = require('../queries/jokes-queries.js');
 
 const router = express.Router();
@@ -18,23 +16,10 @@ router.get('/', (req, res) => {
       });
   });
 
-// GET ALL USERS
-  router.get('/users', (req, res) => {
-    Jokes.findAllUsers()
-      .then(users => {
-        res.status(200).json(users);
-      })
-      .catch(err => {
-        res.status(500).json({ message: 'Failed to get users' });
-      });
-  });
-
-
-
-// GET USERS BY ID
-router.get('/:id', async (req, res) => {
+// GET JOKE BY ID
+router.get('/byid/:id', async (req, res) => {
   try {
-  const joke = await Jokes.findById(req.params.id);
+  const joke = await Jokes.findJokeById(req.params.id);
   if (joke) {
   res.status(200).json(joke);
   } else {
@@ -49,14 +34,34 @@ router.get('/:id', async (req, res) => {
   }
   });
 
+// GET ALL USERS
+  router.get('/users', (req, res) => {
+    Jokes.findAllUsers()
+      .then(users => {
+        res.status(200).json(users);
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Failed to get users' });
+      });
+  });
 
-
-
-
-
-
-
-
+// GET USER BY ID
+router.get('/userid/:id', async (req, res) => {
+  try {
+  const user = await Jokes.findUser(req.params.id);
+  if (user) {
+  res.status(200).json(user);
+  } else {
+  res.status(404).json({ message: 'User not found' });
+  }
+  } catch (error) {
+  // log error to database
+  console.log(error);
+  res.status(500).json({
+  message: 'Error retrieving the user',
+  });
+  }
+  });
 
 // POST JOKE
 router.post("/addjoke", (req, res) => { 
@@ -73,13 +78,8 @@ router.post("/addjoke", (req, res) => {
     );
 }); 
 
-
-
-
-
-// UPDATE JOKE
-  
-router.put('/:id', async (req, res) => {
+// UPDATE JOKE BY ID
+router.put('/updatebyid/:id', async (req, res) => {
   try {
     const joke = await Jokes.update(req.params.id, req.body);
   if (joke) {
@@ -96,17 +96,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-  
-
-
-
-
-
-
-
-// DELETE JOKE
-  
-router.delete('/:id', async (req, res) => {
+// DELETE JOKE BY ID
+router.delete('/delete/:id', async (req, res) => {
   try {
   const count = await Jokes.remove(req.params.id);
   if (count > 0) {
@@ -122,17 +113,6 @@ router.delete('/:id', async (req, res) => {
   });
   }
   });
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
