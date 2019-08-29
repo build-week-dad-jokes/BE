@@ -114,7 +114,7 @@
 
         2.6     PUT (UPDATE) JOKES BY ID
 ```
-                                https://dadjokes-be.herokuapp.com/api/jokes/updatebyid/16
+                                https://dadjokes-be.herokuapp.com/api/jokes/updatebyid/:id
 ```js
 
                 2.5.1   AVAILABLE FIELDS - only "setup" and "punchline" are required fields
