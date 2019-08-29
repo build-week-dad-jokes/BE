@@ -19,7 +19,20 @@ module.exports = {
     }
   },
 
-//testing:
+//   testing: {
+//     client: 'sqlite3',
+//     connection: {
+//       filename: './api/server.spec.js',
+//     },
+//     useNullAsDefault: true,
+//     migrations: {
+//       directory: './data/migrations',
+//     },
+//     seeds: {
+//       directory: './data/seeds',
+//     },
+//   },
+// };
 
 
   // staging: {

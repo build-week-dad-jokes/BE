@@ -1,7 +1,7 @@
 {
-  "name": "nodeauth-challenge",
+  "name": "BUILD WEEK 3 BACKEND",
   "version": "1.0.0",
-  "description": "Authentication Sprint Challenge",
+  "description": "BUILD WEEK 3 BACKEND",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",

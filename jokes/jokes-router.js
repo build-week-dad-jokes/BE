@@ -65,7 +65,8 @@ router.get('/userid/:id', async (req, res) => {
 
 // POST JOKE
 router.post("/addjoke", (req, res) => { 
-    const joke = (req.body);
+    const joke = (req.body)
+    // const joke = {...req.body, user_id: res.decoded};
     Jokes.addJoke(joke)
         .then(newJoke => {
           res.status(201).json(newJoke);
